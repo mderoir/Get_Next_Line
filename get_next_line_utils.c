@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mderoir <mderoir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/18 11:28:35 by mderoir           #+#    #+#             */
-/*   Updated: 2019/11/18 11:28:35 by mderoir          ###   ########.fr       */
+/*   Created: 2019/11/18 18:11:35 by mderoir           #+#    #+#             */
+/*   Updated: 2019/11/18 18:16:52 by mderoir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,42 +14,37 @@
 
 int error_check(int fd, char **str, char **line)
 { 
-    if (fd == -1 || line == NULL)
-        return (-1);
-    if (!*str)
-    {
-        if(!(*str = malloc(sizeof(char*) * (BUFFER_SIZE + 1))))
-            return (-1);
-    }
-    return (0);
+	if (fd == -1 || line == NULL)
+		return (-1);
+	if (!*str)
+	{
+		if(!(*str = malloc(sizeof(char*) * (BUFFER_SIZE + 1))))
+			return (-1);
+	}
+	return (0);
 }
 
 char	*readline(int fd, char *str)
 {
-    char buffer[BUFFER_SIZE + 1];
-    int octet_read;
-    
-    while ((octet_read = read(fd, buffer, BUFFER_SIZE)) > 0)
-    {
-        buffer[octet_read] = '\0';
-        str = ft_strjoin(str, buffer);
-    }
-    return (str);
+	char buffer[BUFFER_SIZE + 1];
+	int octet_read;
+
+	while ((octet_read = read(fd, buffer, BUFFER_SIZE)) > 0)
+	{
+		buffer[octet_read] = '\0';
+		str = ft_strjoin(str, buffer);
+	}
+	return (str);
 }
 
 int ft_strlen(char *str)
 {
-    int i;
+	int i;
 
-    i = 0;
-    while (str[i])
-        i++;
-    return(i);
-}
-
-void    ft_putstr(char *str)
-{
-    write(1, str, ft_strlen(str));
+	i = 0;
+	while (str[i])
+		i++;
+	return(i);
 }
 
 char	*ft_strjoin(char *s1, char *s2)
@@ -87,7 +82,7 @@ char	*ft_substr(char *s, unsigned int start, size_t len)
 	if (!s)
 		return (NULL);
 	if (ft_strlen(s) < start)
-		return (ft_strdup(""));
+		return (tab = (char *)malloc(sizeof(char)));
 	size = ft_strlen(s + start);
 	if (size < len)
 		len = size;
@@ -100,21 +95,4 @@ char	*ft_substr(char *s, unsigned int start, size_t len)
 	}
 	tab[count] = '\0';
 	return (tab);
-}
-
-char		*ft_strdup(char *src)
-{
-	char	*dest;
-    int i;
-
-	i = 0;
-    if (!(dest = (char *)malloc((ft_strlen(src) + 1) * sizeof(char))))
-		return (NULL);
-	while (src[i])
-	{
-		dest[i] = src[i];
-		i++;
-	}
-    dest[i] = 0;
-	return (dest);
 }
