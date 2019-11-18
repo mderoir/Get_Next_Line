@@ -16,7 +16,7 @@
 # include <sys/types.h>
 # include <sys/uio.h>
 # include <unistd.h>
-#define BUFFER_SIZE 32
+//#define BUFFER_SIZE 2
 
 int		get_next_line(int const fd, char **line);
 char	*readline(int fd, char *str);

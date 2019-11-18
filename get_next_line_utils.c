@@ -21,24 +21,7 @@ int error_check(int fd, char **str, char **line)
         if(!(*str = malloc(sizeof(char*) * (BUFFER_SIZE + 1))))
             return (-1);
     }
-
     return (0);
-}
-
-char	*ft_strchr(const char *s, int c)
-{
-	int			i;
-
-	i = 0;
-	while (s[i])
-	{
-		if (s[i] == c)
-			return ((char *)&s[i]);
-		i++;
-	}
-	if (c == '\0')
-		return ((char *)&s[i]);
-	return (0);
 }
 
 char	*readline(int fd, char *str)
@@ -67,21 +50,6 @@ int ft_strlen(char *str)
 void    ft_putstr(char *str)
 {
     write(1, str, ft_strlen(str));
-}
-
-char	*ft_strcpy(char *dest, char *src)
-{
-	int i;
-
-	i = 0;
-
-	while (src[i])
-	{
-		dest[i] = src[i];
-		i++;
-	}
-	dest[i] = 0;
-	return (dest);
 }
 
 char	*ft_strjoin(char *s1, char *s2)
@@ -134,11 +102,19 @@ char	*ft_substr(char *s, unsigned int start, size_t len)
 	return (tab);
 }
 
-char		*ft_strdup( char *s1)
+char		*ft_strdup(char *src)
 {
-	char	*str;
-	if (!(str = (char *)malloc((ft_strlen(s1) + 1) * sizeof(char))))
+	char	*dest;
+    int i;
+
+	i = 0;
+    if (!(dest = (char *)malloc((ft_strlen(src) + 1) * sizeof(char))))
 		return (NULL);
-	str = ft_strcpy(str, s1);
-	return (str);
+	while (src[i])
+	{
+		dest[i] = src[i];
+		i++;
+	}
+    dest[i] = 0;
+	return (dest);
 }
