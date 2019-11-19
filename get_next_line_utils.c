@@ -5,20 +5,20 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mderoir <mderoir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/18 18:11:35 by mderoir           #+#    #+#             */
-/*   Updated: 2019/11/18 18:16:52 by mderoir          ###   ########.fr       */
+/*   Created: 2019/11/19 13:13:36 by mderoir           #+#    #+#             */
+/*   Updated: 2019/11/19 13:28:46 by mderoir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int error_check(int fd, char **str, char **line)
-{ 
+int		error_check(int fd, char **str, char **line)
+{
 	if (fd == -1 || line == NULL)
 		return (-1);
 	if (!*str)
 	{
-		if(!(*str = malloc(sizeof(char*) * (BUFFER_SIZE + 1))))
+		if (!(*str = malloc(sizeof(char*) * (BUFFER_SIZE + 1))))
 			return (-1);
 	}
 	return (0);
@@ -26,8 +26,8 @@ int error_check(int fd, char **str, char **line)
 
 char	*readline(int fd, char *str)
 {
-	char buffer[BUFFER_SIZE + 1];
-	int octet_read;
+	char	buffer[BUFFER_SIZE + 1];
+	int		octet_read;
 
 	while ((octet_read = read(fd, buffer, BUFFER_SIZE)) > 0)
 	{
@@ -37,14 +37,14 @@ char	*readline(int fd, char *str)
 	return (str);
 }
 
-int ft_strlen(char *str)
+int		ft_strlen(char *str)
 {
 	int i;
 
 	i = 0;
 	while (str[i])
 		i++;
-	return(i);
+	return (i);
 }
 
 char	*ft_strjoin(char *s1, char *s2)
