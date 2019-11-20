@@ -6,7 +6,7 @@
 /*   By: mderoir <mderoir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/18 11:28:31 by mderoir           #+#    #+#             */
-/*   Updated: 2019/11/19 13:43:06 by mderoir          ###   ########.fr       */
+/*   Updated: 2019/11/20 18:10:28 by mderoir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	get_next_line(int const fd, char **line)
 	{
 		while (str[i] != '\n' && str[i])
 			i++;
-		if (i == 0 && str[i] != '\n')
+		if (i == 0)
 			(*line) = (char *)malloc(sizeof(char));
 		else
 			(*line) = ft_substr(str, 0, i);
