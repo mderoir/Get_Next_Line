@@ -6,7 +6,7 @@
 /*   By: mderoir <mderoir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 13:13:36 by mderoir           #+#    #+#             */
-/*   Updated: 2019/11/20 17:59:12 by mderoir          ###   ########.fr       */
+/*   Updated: 2019/11/21 14:03:00 by mderoir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,23 @@ char	*readline(int fd, char *str)
 {
 	char	buffer[BUFFER_SIZE + 1];
 	int		octet_read;
+	int saved_size;
 
+	saved_size = 0;
 	while ((octet_read = read(fd, buffer, BUFFER_SIZE)) > 0)
 	{
 		buffer[octet_read] = '\0';
+		saved_size = octet_read - 1;
+		while (saved_size >= 0)
+		{
+			if (buffer[saved_size] == '\n')
+				return (str = ft_strjoin(str, buffer));
+		    saved_size--;
+		}	
+		
 		str = ft_strjoin(str, buffer);
 	}
+	
 	return (str);
 }
 
@@ -43,7 +54,9 @@ int		ft_strlen(char *str)
 
 	i = 0;
 	while (str[i])
+	{
 		i++;
+	}
 	return (i);
 }
 
